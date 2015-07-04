@@ -1,7 +1,9 @@
 //Assignment 1 Question 1
 //Neil MacKenzie
 #include <iostream>
+#include <iomanip>
 #include <string>
+#include <fstream>
 #include <vector>
 using namespace std;
 
@@ -10,6 +12,13 @@ void getFractions(int arr[]);
 void calcFractions(int arr[]);
 void reduceFractions(int arr[]);
 void showFractions(int arr[]);
+
+//Functions relating to Question 2
+void readFile(string arr[]);
+void calculateAverage();
+void calculateGrade();
+void calculateTestAverage();
+void printGrades();
 
 int main()
 {
@@ -26,6 +35,7 @@ int main()
 		cout << "4. Exit program" << endl;
 		cin >> progResp;
 
+		//Question 1
 		if (progResp == "1"){
 			cout << endl << "\tOne was chosen" << endl << endl;
 			
@@ -44,10 +54,21 @@ int main()
 			} while (userResp == "y" || userResp == "Y");
 			progResp = "Y";
 		}
+
+		//Question 2
 		else if (progResp == "2"){
 			cout << endl << "\tTwo was chosen" << endl << endl;
+			//vector <string> nameStu;
+			string nameStu[100];
+			int testScore[100][100];
+
+			readFile(nameStu);
+
+
 			progResp = "Y";
 		}
+
+		//Question 3
 		else if (progResp == "3"){
 			cout << endl << "\tThree was chosen" << endl << endl;
 
@@ -210,13 +231,9 @@ void reduceFractions(int arr[])
 		}
 
 		if (b != 0 && b != 1 && b != a){
-			cout << "entering if statement b is equal to : " << b << endl;
 			for (int i = b; i > 1; i--){
-				cout << "int i is equal to :" << i << endl;
-				cout << "A = " << a << "B = " << b << endl;
 				if (a%i == 0 && b%i == 0){
 					gcd = i;
-					cout << "\tGCD is equal to : " << i << endl;
 					//Breaks for loop, so that GCD calculation doesn't continue to run and GCD overwritten
 					i = 0;
 				}
@@ -238,19 +255,88 @@ void showFractions(int arr[])
 
 	//Starts formatting the fraction table
 	cout << "Your two fractions were " << arr[0] << "/" << arr[1] << " and " << arr[2] << "/" << arr[3] << endl;
-	cout << "Mutli\t\t" << "Div\t\t" << "Add\t\t" << "Sub\t\t" << endl;
-	cout << "*\t\t" << "/\t\t" << "+\t\t" << "-\t\t" << endl;
+	cout << left << setw(15) << "Mutli" << left << setw(15) << "Div"  << left << setw(15) << "Add" << left << setw(15) << "Sub" << endl;
+	cout << left << setw(15) << "*" << left << setw(15) << "/"  << left << setw(15) << "+" << left << setw(15) << "-" << endl;
 
 	//Reduce fractions 2/2 to 1 whole, if not it will output fractions as number/number, ie 1/3
 	for (int i = 4; i < 12; i = i + 2)
 	{
 		if (arr[i] == arr[i + 1]){
-			cout << 1 << "\t\t";
+			cout << left << setw(15) << 1;
 		}
 		else{
-			cout << arr[i] << "/" << arr[i + 1] << "\t\t";
+			cout << arr[i] << "/" << left << setw(15) << arr[i + 1];
 		}
 	}
 	cout << endl << endl << "Press any key to continue" << endl;
 	cin >> x;
+}
+
+void readFile(string arr[]){
+	ifstream inputFile;
+	int numStud;
+	int numTest;
+	string testString;
+	int testIntArray[5][10];
+
+	inputFile.open("grades.txt");
+
+	if (inputFile){
+		cout << "Reading data from the file.\n";
+
+		//Get Number of Students
+		inputFile >> numStud;    
+		cout << numStud << " wow " << endl;
+
+		//Get Number of Tests
+		inputFile >> numTest;      
+
+		int testXXX = 6;
+
+		//Get repeating student data
+		for (int n = 0; n < testXXX; n++){
+			inputFile >> arr[n];
+			/*inputFile >> testIntArray[0];
+			inputFile >> testIntArray[1];
+			inputFile >> testIntArray[2];
+			inputFile >> testIntArray[3];
+			inputFile >> testIntArray[4];*/
+
+
+			cout << "entering secondary for loop" << endl;
+			for (int m = 0; m < numTest; m++){
+				inputFile >> testIntArray[n][m];
+				//cout << testString << endl;
+				cout << "Not an endless loop test" << endl;
+			}
+			
+		}
+
+	/*	for (int n = 0; n < testXXX; n++){
+			cout << arr[n] << endl;
+			cout << testIntArray[n][0] << endl;
+			cout << testIntArray[n][1] << endl;
+			cout << testIntArray[n][2] << endl;
+			cout << testIntArray[n][3] << endl;
+			cout << testIntArray[n][4] << endl;
+		}*/
+
+		inputFile.close();
+	}
+	else{
+		cout << "Error reading the file" << endl;
+	}
+}
+
+void calculateAverage(){
+
+}
+void calculateGrade(){
+
+}
+void calculateTestAverage(){
+
+}
+void printGrades(){
+
 }
