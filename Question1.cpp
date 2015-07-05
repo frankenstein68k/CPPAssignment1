@@ -14,16 +14,16 @@ void reduceFractions(int arr[]);
 void showFractions(int arr[]);
 
 //Functions relating to Question 2
-void readFile(string arr[]);
-void calculateAverage();
-void calculateGrade();
-void calculateTestAverage();
-void printGrades();
+void readFile(string arrS[], int arr[][100]);
+void calculateAverage(string arrS[], int arr[][100], float stuAvg[]);
+void calculateGrade(float stuAvg[], char stuGrade[]);
+void calculateTestAverage(int testScore[][100], float testAvg[]);
+void printGrades(string nameStu[], int testScore[][100], float stuAvg[], char stuGrade[], float testAvg[]);
 
 int main()
 {
 	string progResp = "Y";
-	int x =0;
+	int x = 0;
 	int y;
 
 	//Menu system for programs
@@ -38,7 +38,7 @@ int main()
 		//Question 1
 		if (progResp == "1"){
 			cout << endl << "\tOne was chosen" << endl << endl;
-			
+
 			string userResp = "Y";
 
 			//Array of numerators and denominators
@@ -61,9 +61,15 @@ int main()
 			//vector <string> nameStu;
 			string nameStu[100];
 			int testScore[100][100];
+			float stuAvg[100];
+			char stuGrade[100];
+			float testAvg[100];
 
-			readFile(nameStu);
-
+			readFile(nameStu, testScore);
+			calculateAverage(nameStu, testScore, stuAvg);
+			calculateGrade(stuAvg, stuGrade);
+			calculateTestAverage(testScore, testAvg);
+			printGrades(nameStu, testScore, stuAvg, stuGrade, testAvg);
 
 			progResp = "Y";
 		}
@@ -78,26 +84,26 @@ int main()
 			int counter = 1;
 			string q3ask = "n";
 			bool badResp = false;
-			
+
 			do{
 				cout << "Please enter a number in the range of 1-99" << endl;
 				cin >> x;
 				if (x > 0 && x < 100){
 					counter++;
 					q3Num.push_back(x);
-					
+
 					if (x < 10){
-						q3NumVal.push_back((float)x/(float)9);
+						q3NumVal.push_back((float)x / (float)9);
 					}
 					else{
-						q3NumVal.push_back((float)x/(float)99);
+						q3NumVal.push_back((float)x / (float)99);
 					}
-				
+
 				}
 				else {
 					cout << "That was not a number between 1 and 99" << endl;
 					badResp = true;
-				}	
+				}
 
 				//Makes sure it does ask you if you're finished if you entered the maximum
 				//amount of responses or if you entered an invalid response
@@ -114,19 +120,19 @@ int main()
 				{
 					badResp = false;
 				}
-				
+
 
 			} while (counter <= 10);
-			
+
 			//Buble sorting the vectors
 			float temp1;
 			int temp2;
 			bool finished = false;
-			
+
 			while (!finished){
 				finished = true;
 				for (int i = 0; i < q3NumVal.size() - 1; i++){
-					if (q3NumVal[i] < q3NumVal[i+1]){
+					if (q3NumVal[i] < q3NumVal[i + 1]){
 						//Sorting number values
 						temp1 = q3NumVal[i];
 						q3NumVal[i] = q3NumVal[i + 1];
@@ -134,7 +140,7 @@ int main()
 						//Sorting numbers
 						temp2 = q3Num[i];
 						q3Num[i] = q3Num[i + 1];
-						q3Num[i+1] = temp2;
+						q3Num[i + 1] = temp2;
 						//Ends the while loop
 						finished = false;
 					}
@@ -209,8 +215,6 @@ void calcFractions(int arr[])
 
 void reduceFractions(int arr[])
 {
-	//Reduce the fractions 8/10 is 4/5
-
 	int a, b, c, e, gcd;
 	a = 0;
 	b = 0;
@@ -255,8 +259,8 @@ void showFractions(int arr[])
 
 	//Starts formatting the fraction table
 	cout << "Your two fractions were " << arr[0] << "/" << arr[1] << " and " << arr[2] << "/" << arr[3] << endl;
-	cout << left << setw(15) << "Mutli" << left << setw(15) << "Div"  << left << setw(15) << "Add" << left << setw(15) << "Sub" << endl;
-	cout << left << setw(15) << "*" << left << setw(15) << "/"  << left << setw(15) << "+" << left << setw(15) << "-" << endl;
+	cout << left << setw(15) << "Mutli" << left << setw(15) << "Div" << left << setw(15) << "Add" << left << setw(15) << "Sub" << endl;
+	cout << left << setw(15) << "*" << left << setw(15) << "/" << left << setw(15) << "+" << left << setw(15) << "-" << endl;
 
 	//Reduce fractions 2/2 to 1 whole, if not it will output fractions as number/number, ie 1/3
 	for (int i = 4; i < 12; i = i + 2)
@@ -272,55 +276,38 @@ void showFractions(int arr[])
 	cin >> x;
 }
 
-void readFile(string arr[]){
+void readFile(string arrS[], int arr[][100]){
 	ifstream inputFile;
 	int numStud;
 	int numTest;
+
+	//prolly can delete
 	string testString;
-	int testIntArray[5][10];
+
+	//large test arrays
+	int testIntArray[100][100];
+	string nameOfStudents[100];
 
 	inputFile.open("grades.txt");
 
 	if (inputFile){
-		cout << "Reading data from the file.\n";
-
 		//Get Number of Students
-		inputFile >> numStud;    
-		cout << numStud << " wow " << endl;
+		inputFile >> numStud;
 
 		//Get Number of Tests
-		inputFile >> numTest;      
+		inputFile >> numTest;
 
-		int testXXX = 6;
+		//Get repeating student datad
+		for (int n = 0; n < numStud; n++){
 
-		//Get repeating student data
-		for (int n = 0; n < testXXX; n++){
-			inputFile >> arr[n];
-			/*inputFile >> testIntArray[0];
-			inputFile >> testIntArray[1];
-			inputFile >> testIntArray[2];
-			inputFile >> testIntArray[3];
-			inputFile >> testIntArray[4];*/
-
-
-			cout << "entering secondary for loop" << endl;
+			//Get student name
+			inputFile >> arrS[n];
+			//Get student marks
 			for (int m = 0; m < numTest; m++){
-				inputFile >> testIntArray[n][m];
-				//cout << testString << endl;
-				cout << "Not an endless loop test" << endl;
+				inputFile >> arr[n][m];
 			}
-			
+
 		}
-
-	/*	for (int n = 0; n < testXXX; n++){
-			cout << arr[n] << endl;
-			cout << testIntArray[n][0] << endl;
-			cout << testIntArray[n][1] << endl;
-			cout << testIntArray[n][2] << endl;
-			cout << testIntArray[n][3] << endl;
-			cout << testIntArray[n][4] << endl;
-		}*/
-
 		inputFile.close();
 	}
 	else{
@@ -328,15 +315,94 @@ void readFile(string arr[]){
 	}
 }
 
-void calculateAverage(){
+void calculateAverage(string arrS[], int arr[][100], float stuAvg[]){
+	cout << "\t Entering calculateAverage" << endl;
+
+	////testing purposes
+	//for (int i = 0; i < 10; i++){
+	//	cout << arrS[i] << endl;
+	//	for (int ii = 0; ii < 5; ii++){
+	//		cout << arr[i][ii] << endl;
+	//	}
+	//}
+	float avg;
+	int sum;
+
+	//calculate averages
+	for (int i = 0; i < 10; i++){
+		cout << arrS[i] << endl;
+		sum = 0;
+		for (int ii = 0; ii < 5; ii++){
+			//cout << arr[i][ii] << endl;
+			sum = sum + arr[i][ii];
+		}
+		cout << "sum of " << arrS[i] << " is equal to " << sum << endl;
+		stuAvg[i] = float(sum) / 5;
+		cout << "average = " << stuAvg[i] << endl;
+	}
 
 }
-void calculateGrade(){
-
+void calculateGrade(float stuAvg[], char stuGrade[]){
+	int tempAvg = 0;
+	for (int i = 0; i < 10; i++){
+		tempAvg = stuAvg[i];
+		if (tempAvg < 50){
+			stuGrade[i] = 'F';
+		}
+		else if (tempAvg < 60){
+			stuGrade[i] = 'E';
+		}
+		else if (tempAvg < 70){
+			stuGrade[i] = 'D';
+		}
+		else if (tempAvg < 80){
+			stuGrade[i] = 'C';
+		}
+		else if (tempAvg < 90){
+			stuGrade[i] = 'B';
+		}
+		else if (tempAvg <= 100){
+			stuGrade[i] = 'A';
+		}
+	}
 }
-void calculateTestAverage(){
+void calculateTestAverage(int testScore[][100], float testAvg[]){
 
+	cout << "calculateTestAverage" << endl;
+	for (int i = 0; i < 5; i++){
+		float bleh = 10;
+		int sum = 0;
+		cout << "test " << i << endl;
+
+		for (int t = 0; t < 10; t++){
+			cout << testScore[t][i] << endl;
+			sum = sum + testScore[t][i];
+		}
+		testAvg[i] = sum / bleh;
+		cout << "\tTest Average = " << testAvg[i] << endl;
+	}
 }
-void printGrades(){
+void printGrades(string nameStu[], int testScore[][100], float stuAvg[], char stuGrade[], float testAvg[]){
+	float avgAvg = 0;
+	float sum = 0;
+	cout << setw(10) << "Name" << setw(7) << "test1" << setw(7) << "test2" << setw(7) << "test3" << setw(7) << "test4" << setw(7) << "test5" << setw(7) << "AVG" << setw(7) << "Grade" << endl << endl;
 
+	//Hardcoded beware
+	for (int q = 0; q < 10; q++){
+		cout << setw(10) << nameStu[q];
+		for (int r = 0; r < 5; r++){
+			cout << setw(7) << testScore[q][r];
+		}
+		cout << setw(7) << stuAvg[q] << setw(7) << stuGrade[q] << endl;
+	}
+
+	cout << setw(10) << "test avg";
+	for (int i = 0; i < 5; i++){
+		cout << setw(7) << testAvg[i];
+	}
+	for (int t = 0; t < 5; t++){
+		sum = sum + testAvg[t];
+	}
+	avgAvg = sum / 5;
+	cout << setw(7) << avgAvg << endl;
 }

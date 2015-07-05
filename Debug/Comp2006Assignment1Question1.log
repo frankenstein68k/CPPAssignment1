@@ -1,23 +1,25 @@
-﻿Build started 7/4/2015 4:39:20 PM.
+﻿Build started 7/5/2015 12:22:19 AM.
      1>Project "C:\Users\neil\Documents\Visual Studio 2013\Projects\CPPAssignment1\Comp2006Assignment1Question1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Question1.cpp
          Question1.cpp
-     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(128): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(145): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(134): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(151): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(27): warning C4101: 'y' : unreferenced local variable
-     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(63): warning C4101: 'testScore' : unreferenced local variable
-     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(243): warning C4258: 'i' : definition from the for loop is ignored; the definition from the enclosing scope is used
-                 c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(234) : definition of 'i' ignored
-                 c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(221) : definition of 'i' used
-     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(244): warning C4258: 'i' : definition from the for loop is ignored; the definition from the enclosing scope is used
-                 c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(234) : definition of 'i' ignored
-                 c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(221) : definition of 'i' used
+     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(247): warning C4258: 'i' : definition from the for loop is ignored; the definition from the enclosing scope is used
+                 c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(238) : definition of 'i' ignored
+                 c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(225) : definition of 'i' used
+     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(248): warning C4258: 'i' : definition from the for loop is ignored; the definition from the enclosing scope is used
+                 c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(238) : definition of 'i' ignored
+                 c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(225) : definition of 'i' used
+     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(288): warning C4101: 'testIntArray' : unreferenced local variable
+     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(328): warning C4101: 'avg' : unreferenced local variable
+     1>c:\users\neil\documents\visual studio 2013\projects\cppassignment1\question1.cpp(348): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\neil\Documents\Visual Studio 2013\Projects\CPPAssignment1\Debug\Comp2006Assignment1Question1.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\neil\Documents\Visual Studio 2013\Projects\CPPAssignment1\Debug\Comp2006Assignment1Question1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\neil\Documents\Visual Studio 2013\Projects\CPPAssignment1\Debug\Comp2006Assignment1Question1.lib" /MACHINE:X86 Debug\Question1.obj
-     1>LINK : fatal error LNK1168: cannot open C:\Users\neil\Documents\Visual Studio 2013\Projects\CPPAssignment1\Debug\Comp2006Assignment1Question1.exe for writing
-     1>Done Building Project "C:\Users\neil\Documents\Visual Studio 2013\Projects\CPPAssignment1\Comp2006Assignment1Question1.vcxproj" (Build target(s)) -- FAILED.
+         Comp2006Assignment1Question1.vcxproj -> C:\Users\neil\Documents\Visual Studio 2013\Projects\CPPAssignment1\Debug\Comp2006Assignment1Question1.exe
+     1>Done Building Project "C:\Users\neil\Documents\Visual Studio 2013\Projects\CPPAssignment1\Comp2006Assignment1Question1.vcxproj" (Build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:01.17
+Time Elapsed 00:00:01.46
