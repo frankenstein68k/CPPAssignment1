@@ -16,7 +16,7 @@ void showFractions(int arr[]);
 //Functions relating to Question 2
 void readFile(string arrS[], int arr[][100]);
 void calculateAverage(string arrS[], int arr[][100], float stuAvg[]);
-void calculateGrade(float stuAvg[], char stuGrade[]);
+char calculateGrade(float studAvg);
 void calculateTestAverage(int testScore[][100], float testAvg[]);
 void printGrades(string nameStu[], int testScore[][100], float stuAvg[], char stuGrade[], float testAvg[]);
 
@@ -56,16 +56,20 @@ int main()
 
 		//Question 2
 		else if (progResp == "2"){
-			//vector <string> nameStu;
 			string nameStu[100];
 			int testScore[100][100];
 			float stuAvg[100];
 			char stuGrade[100];
 			float testAvg[100];
 
+			system("cls");
 			readFile(nameStu, testScore);
 			calculateAverage(nameStu, testScore, stuAvg);
-			calculateGrade(stuAvg, stuGrade);
+			
+			for (int x = 0; x < 100; x++){
+				stuGrade[x] = calculateGrade(stuAvg[x]);
+			}
+			
 			calculateTestAverage(testScore, testAvg);
 			printGrades(nameStu, testScore, stuAvg, stuGrade, testAvg);
 
@@ -285,7 +289,7 @@ void readFile(string arrS[], int arr[][100]){
 		//Get Number of Tests
 		inputFile >> numTest;
 
-		//Get repeating student datad
+		//Get repeating student data
 		for (int n = 0; n < numStud; n++){
 
 			//Get student name
@@ -294,7 +298,6 @@ void readFile(string arrS[], int arr[][100]){
 			for (int m = 0; m < numTest; m++){
 				inputFile >> arr[n][m];
 			}
-
 		}
 		inputFile.close();
 	}
@@ -307,59 +310,47 @@ void calculateAverage(string arrS[], int arr[][100], float stuAvg[]){
 	float avg;
 	int sum;
 
-	//calculate averages
+	//calculate average test scores for each student
 	for (int i = 0; i < 10; i++){
-		cout << arrS[i] << endl;
 		sum = 0;
 		for (int ii = 0; ii < 5; ii++){
-			//cout << arr[i][ii] << endl;
 			sum = sum + arr[i][ii];
 		}
-		cout << "sum of " << arrS[i] << " is equal to " << sum << endl;
 		stuAvg[i] = float(sum) / 5;
-		cout << "average = " << stuAvg[i] << endl;
 	}
 
 }
-void calculateGrade(float stuAvg[], char stuGrade[]){
-	int tempAvg = 0;
-	for (int i = 0; i < 10; i++){
-		tempAvg = stuAvg[i];
-		if (tempAvg < 50){
-			stuGrade[i] = 'F';
+char calculateGrade(float stuAvg){	
+		if (stuAvg < 50){
+			return 'F';
 		}
-		else if (tempAvg < 60){
-			stuGrade[i] = 'E';
+		else if (stuAvg < 60){
+			return 'E';
 		}
-		else if (tempAvg < 70){
-			stuGrade[i] = 'D';
+		else if (stuAvg < 70){
+			return 'D';
 		}
-		else if (tempAvg < 80){
-			stuGrade[i] = 'C';
+		else if (stuAvg < 80){
+			return 'C';
 		}
-		else if (tempAvg < 90){
-			stuGrade[i] = 'B';
+		else if (stuAvg < 90){
+			return 'B';
 		}
-		else if (tempAvg <= 100){
-			stuGrade[i] = 'A';
+		else if (stuAvg <= 100){
+			return 'A';
 		}
-	}
 }
 
 void calculateTestAverage(int testScore[][100], float testAvg[]){
 
-	cout << "calculateTestAverage" << endl;
 	for (int i = 0; i < 5; i++){
-		float bleh = 10;
+		float numStu = 10;
 		int sum = 0;
-		cout << "test " << i << endl;
 
 		for (int t = 0; t < 10; t++){
-			cout << testScore[t][i] << endl;
 			sum = sum + testScore[t][i];
 		}
-		testAvg[i] = sum / bleh;
-		cout << "\tTest Average = " << testAvg[i] << endl;
+		testAvg[i] = sum / numStu;
 	}
 }
 void printGrades(string nameStu[], int testScore[][100], float stuAvg[], char stuGrade[], float testAvg[]){
