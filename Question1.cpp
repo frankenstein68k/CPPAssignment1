@@ -37,8 +37,6 @@ int main()
 
 		//Question 1
 		if (progResp == "1"){
-			cout << endl << "\tOne was chosen" << endl << endl;
-
 			string userResp = "Y";
 
 			//Array of numerators and denominators
@@ -49,15 +47,15 @@ int main()
 				calcFractions(fraction);
 				reduceFractions(fraction);
 				showFractions(fraction);
-				cout << "Do you want to computer another fraction?" << endl;
+				cout << "Do you want to compute another fraction? y/n" << endl;
 				cin >> userResp;
+				system("cls");
 			} while (userResp == "y" || userResp == "Y");
 			progResp = "Y";
 		}
 
 		//Question 2
 		else if (progResp == "2"){
-			cout << endl << "\tTwo was chosen" << endl << endl;
 			//vector <string> nameStu;
 			string nameStu[100];
 			int testScore[100][100];
@@ -76,8 +74,6 @@ int main()
 
 		//Question 3
 		else if (progResp == "3"){
-			cout << endl << "\tThree was chosen" << endl << endl;
-
 			vector <int> q3Num;
 			vector <float> q3NumVal;
 
@@ -85,6 +81,8 @@ int main()
 			string q3ask = "n";
 			bool badResp = false;
 
+			//clear screen
+			system("cls");
 			do{
 				cout << "Please enter a number in the range of 1-99" << endl;
 				cin >> x;
@@ -215,10 +213,9 @@ void calcFractions(int arr[])
 
 void reduceFractions(int arr[])
 {
-	int a, b, c, e, gcd;
+	int a, b, e, gcd;
 	a = 0;
 	b = 0;
-	c = 1;
 	e = 0;
 	gcd = 1;
 
@@ -247,8 +244,6 @@ void reduceFractions(int arr[])
 			arr[i] = arr[i] / gcd;
 			arr[i + 1] = arr[i + 1] / gcd;
 		}
-
-
 	}
 }
 
@@ -281,13 +276,6 @@ void readFile(string arrS[], int arr[][100]){
 	int numStud;
 	int numTest;
 
-	//prolly can delete
-	string testString;
-
-	//large test arrays
-	int testIntArray[100][100];
-	string nameOfStudents[100];
-
 	inputFile.open("grades.txt");
 
 	if (inputFile){
@@ -316,15 +304,6 @@ void readFile(string arrS[], int arr[][100]){
 }
 
 void calculateAverage(string arrS[], int arr[][100], float stuAvg[]){
-	cout << "\t Entering calculateAverage" << endl;
-
-	////testing purposes
-	//for (int i = 0; i < 10; i++){
-	//	cout << arrS[i] << endl;
-	//	for (int ii = 0; ii < 5; ii++){
-	//		cout << arr[i][ii] << endl;
-	//	}
-	//}
 	float avg;
 	int sum;
 
@@ -366,6 +345,7 @@ void calculateGrade(float stuAvg[], char stuGrade[]){
 		}
 	}
 }
+
 void calculateTestAverage(int testScore[][100], float testAvg[]){
 
 	cout << "calculateTestAverage" << endl;
