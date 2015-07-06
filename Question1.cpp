@@ -247,6 +247,8 @@ void reduceFractions(int arr[])
 			//Run inside this if statement to avoid dividing by zero
 			arr[i] = arr[i] / gcd;
 			arr[i + 1] = arr[i + 1] / gcd;
+
+			gcd = 1;
 		}
 	}
 }
